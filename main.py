@@ -134,8 +134,21 @@ class DiseasePrediction:
         dump(classifier, str(self.model_save_path + self.model_name + ".joblib"))
 
     # Function to Make Predictions on Test Data
-    def make_prediction(self, saved_model_name=None, test_data=None):
+   def make_prediction(self, saved_model_name=None, test_data=None):
         try:
+            # Load Trained Model
+            clf = load(str(self.model_save_path + saved_model_name + ".joblib"))
+        except Exception as e:
+            print("Model not found...")
+
+        if test_data is not None:
+            result = clf.predict(test_data)
+            return result
+        else:
+            result = clf.predict(self.test_features)
+        accuracy = accuracy_score(self.test_labels, result)
+        clf_report = classification_report(self.test_labels, result)
+        return accuracy, clf_report
             # Load Trained Model
             clf = load(str(self.model_save_path + saved_model_name + ".joblib"))
         except Exception as e:
