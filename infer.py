@@ -33,7 +33,8 @@ if __name__ == '__main__':
                 'blister': 0, 'red_sore_around_nose': 1, 'yellow_crust_ooze': 0}
 
     # Prepare Test Data
- 
+    df_test = pd.DataFrame(columns=list(symptoms.keys()))
+    df_test.loc[0] = np.array(list(symptoms.values()))
 
     # Load pre-trained model
     clf = load(str("./saved_model/random_forest.joblib"))
