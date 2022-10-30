@@ -87,11 +87,12 @@ class DiseasePrediction:
         plt.savefig('feature_correlation.png')
 
     # Dataset Train Validation Split
-    
-    
-    
-    
-    
+    def _train_val_split(self):
+        X_train, X_val, y_train, y_val = train_test_split(self.train_features, self.train_labels,test_size=self.config['dataset']['validation_size'],random_state=self.config['random_state'])
+        if self.verbose:
+            print("Number of Training Features: {0}\tNumber of Training Labels: {1}".format(len(X_train), len(y_train)))
+            print("Number of Validation Features: {0}\tNumber of Validation Labels: {1}".format(len(X_val), len(y_val)))
+        return X_train, y_train, X_val, y_val
     
     
     
