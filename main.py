@@ -64,15 +64,17 @@ class DiseasePrediction:
         test_labels = df_test['prognosis']
 
         # Check for data sanity
-        assert (len(test_features.iloc[0]) == 132)
-        assert (len(test_labels) == test_features.shape[0])
-
-        if self.verbose:
-            print("Length of Test Data: ", df_test.shape)
-            print("Test Features: ", test_features.shape)
-            print("Test Labels: ", test_labels.shape)
-        return test_features, test_labels, df_test
-
+       
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     # Features Correlation
     def _feature_correlation(self, data_frame=None, show_fig=False):
         # Get Feature Correlation
@@ -85,15 +87,16 @@ class DiseasePrediction:
         plt.savefig('feature_correlation.png')
 
     # Dataset Train Validation Split
-    def _train_val_split(self):
-        X_train, X_val, y_train, y_val = train_test_split(self.train_features, self.train_labels,
-                                                          test_size=self.config['dataset']['validation_size'],
-                                                          random_state=self.config['random_state'])
-
-        if self.verbose:
-            print("Number of Training Features: {0}\tNumber of Training Labels: {1}".format(len(X_train), len(y_train)))
-            print("Number of Validation Features: {0}\tNumber of Validation Labels: {1}".format(len(X_val), len(y_val)))
-        return X_train, y_train, X_val, y_val
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     # Model Selection
     def select_model(self):
@@ -109,32 +112,23 @@ class DiseasePrediction:
         return self.clf
 
     # ML Model
-    def train_model(self):
-        # Get the Data
-        X_train, y_train, X_val, y_val = self._train_val_split()
-        classifier = self.select_model()
-        # Training the Model
-        classifier = classifier.fit(X_train, y_train)
-        # Trained Model Evaluation on Validation Dataset
-        confidence = classifier.score(X_val, y_val)
-        # Validation Data Prediction
-        y_pred = classifier.predict(X_val)
-        # Model Validation Accuracy
-        accuracy = accuracy_score(y_val, y_pred)
-        # Model Confusion Matrix
-        conf_mat = confusion_matrix(y_val, y_pred)
-        # Model Classification Report
-        clf_report = classification_report(y_val, y_pred)
-        # Model Cross Validation Score
-        score = cross_val_score(classifier, X_val, y_val, cv=3)
+  
 
-        if self.verbose:
-            print('\nTraining Accuracy: ', confidence)
-            print('\nValidation Prediction: ', y_pred)
-            print('\nValidation Accuracy: ', accuracy)
-            print('\nValidation Confusion Matrix: \n', conf_mat)
-            print('\nCross Validation Score: \n', score)
-            print('\nClassification Report: \n', clf_report)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         # Save Trained Model
         dump(classifier, str(self.model_save_path + self.model_name + ".joblib"))
