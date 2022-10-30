@@ -64,17 +64,17 @@ class DiseasePrediction:
         test_labels = df_test['prognosis']
 
         # Check for data sanity
+         Check for data sanity
+        assert (len(train_features.iloc[0]) == 132)
+        assert (len(train_labels) == train_features.shape[0])
+
+        if self.verbose:
+            print("Length of Training Data: ", df_train.shape)
+            print("Training Features: ", train_features.shape)
+            print("Training Labels: ", train_labels.shape)
+        return train_features, train_labels, df_train
        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     # Features Correlation
     def _feature_correlation(self, data_frame=None, show_fig=False):
         # Get Feature Correlation
