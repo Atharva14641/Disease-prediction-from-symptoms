@@ -148,11 +148,9 @@ class DiseasePrediction:
             print("Model not found...")
 
         if test_data is not None:
-            result = clf.predict(test_data)
             return result
         else:
             result = clf.predict(self.test_features)
-        accuracy = accuracy_score(self.test_labels, result)
         clf_report = classification_report(self.test_labels, result)
         return accuracy, clf_report
 
