@@ -113,6 +113,32 @@ class DiseasePrediction:
         return self.clf
 
     # ML Model
+    def train_model(self):
+        # Get the Data
+        X_train, y_train, X_val, y_val = self._train_val_split()
+        classifier = self.select_model()
+        # Training the Model
+        classifier = classifier.fit(X_train, y_train)
+        # Trained Model Evaluation on Validation Dataset
+        confidence = classifier.score(X_val, y_val)
+        # Validation Data Prediction
+        y_pred = classifier.predict(X_val)
+        # Model Validation Accuracy
+        accuracy = accuracy_score(y_val, y_pred)
+        # Model Confusion Matrix
+        conf_mat = confusion_matrix(y_val, y_pred)
+        # Model Classification Report
+        clf_report = classification_report(y_val, y_pred)
+        # Model Cross Validation Score
+        score = cross_val_score(classifier, X_val, y_val, cv=3)
+
+        if self.verbose:
+            print('\nTraining Accuracy: ', confidence)
+            print('\nValidation Prediction: ', y_pred)
+            print('\nValidation Accuracy: ', accuracy)
+            print('\nValidation Confusion Matrix: \n', conf_mat)
+            print('\nCross Validation Score: \n', score)
+            print('\nClassification Report: \n', clf_report)
   
 
 
